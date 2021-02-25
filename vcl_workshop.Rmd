@@ -1,0 +1,24 @@
+---
+title: "Untitled"
+author: "Andrew Carr"
+date: "2/25/2021"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Where Can You Find Census Data?
+
+- NHGIS from IPUMS (https://www.nhgis.org/)
+- Levels: states, counties, tracts, blocks
+- Merge with Census data (GISJOIN)
+
+
+```{r, echo=FALSE}
+   knitr::include_graphics('~/vcl_workshop/nhgis.png')
+```
+
+https://dukeuniv.maps.arcgis.com/apps/mapviewer/index.html?webmap=2c8fdc6267e4439e968837020e7618f3
