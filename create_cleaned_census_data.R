@@ -1,6 +1,11 @@
+# Install necessary packages 
+install.packages("tidyverse")
+install.packages("sf")
+
 # Reads raw census shapefile/data and creates cleaned shapefile with tract-level data
 
 library(sf)
+library(tidyverse)
 
 # Reading geographic data (shapefile)
 usa_tracts <- sf::st_read("~/vcl_workshop/raw_census_data/shapefile_folder/US_tract_2018.shp")

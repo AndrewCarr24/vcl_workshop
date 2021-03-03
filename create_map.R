@@ -1,16 +1,26 @@
+# Installing packages 
+install.packages("tidyverse")
+install.packages("sf")
 
-library(gridExtra)
+# Loading packages 
+library(tidyverse)
+library(sf)
 
-# Nice ggplot theme
+# Nice plot theme
 theme_set(theme_light())
 
-# Creating maps with cleaned_census_data
+
+## Reading in data 
+## NOTE -- file path needs to be set to the directory where this data is located
 
 # Census data
-cleaned_census_data <- sf::st_read("~/vcl_workshop/cleaned_census_data/cleaned_census_data.shp")
+cleaned_census_data <- sf::st_read("cleaned_census_data/cleaned_census_data.shp")
 
 # Durham school data 
-durham_schools_tbl <- read_csv("~/vcl_workshop/durham_school_data.csv")
+durham_schools_tbl <- read_csv("/durham_school_data.csv")
+
+
+## Creating maps with cleaned_census_data
 
 # simple ggplot map
 cleaned_census_data %>% 
@@ -24,7 +34,6 @@ cleaned_census_data %>%
 # Woah?! What happend?
 
 # Need to make CRS match 
-
 # Converting coordinate system datum from NAD83 to wgs84
 cleaned_census_data <- st_transform(cleaned_census_data, crs = "wgs84")
 
@@ -66,7 +75,6 @@ p3
 
 
 # Shade census tracts by income level 
-
 p4 <- cleaned_census_data %>% filter(!is.na(med_inc)) %>% 
   mutate(med_inc_std = (med_inc - mean(med_inc))/sd(med_inc)) %>% 
   ggplot() + geom_sf(aes(fill = med_inc_std), alpha = .5) + 
